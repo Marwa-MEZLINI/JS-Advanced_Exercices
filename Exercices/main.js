@@ -13,7 +13,7 @@ let country = {};
 
 function initialize(countriesData) {
   countries = countriesData
-  
+
   for (let i = 0; i < countries.length; i++) {
     country = {
       name: countries[i].name,
@@ -24,7 +24,7 @@ function initialize(countriesData) {
     };
     countriesObj.push(country);
   }
- 
+
 }
 
 console.log(countriesObj)
@@ -37,11 +37,11 @@ const catsAPI = 'https://api.thecatapi.com/v1/breeds'
 fetch(catsAPI).then(Response => Response.json()).then(data => init(data));
 let catNames = [];
 let cats;
-function init(catData){
-  cats = catData 
-  
+function init(catData) {
+  cats = catData
+
   for (let i = 0; i < cats.length; i++) {
-    catNames.push(cats[i].name);    
+    catNames.push(cats[i].name);
   }
 }
 
@@ -49,6 +49,42 @@ console.log(catNames);
 
 //level 3 :
 //(1) Read the cats api and find the average weight of cat in metric unit.
+
+fetch(catsAPI).then(Response => Response.json()).then(data => getAverageWeight(data));
+let catWeight = [];
+let newArray = [];
+function getAverageWeight(catData) {
+  cats = catData
+
+  for (let i = 0; i < cats.length; i++) {
+    catWeight.push(cats[i].weight.metric);
+  }
+
+  let catsWeight = [];
+  
+  for (let i = 0; i < catWeight.length; i++) {
+    let weight = catWeight[i].replace("- ","");
+
+  let subArray = weight.split(" ");
+  newArray = subArray.map(toNumber);
+    catsWeight.push(newArray);
+  }
+
+  console.log(catsWeight);
+  let average;
+  let averageArray =[];
+  catsWeight.forEach(newArray => { 
+   average = (Math.max(newArray)-Math.min(newArray))/2;
+   averageArray.push(average);
+  });
+
+  console.log(average);
+}
+
+function toNumber(value) {
+  return Number(value)
+}
+
 
 // var count = 0, sumWeight = 0;
 
