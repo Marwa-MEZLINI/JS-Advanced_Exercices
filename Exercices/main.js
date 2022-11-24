@@ -8,11 +8,12 @@ fetch(countriesAPI).then(Response => Response.json()).then(data => initialize(da
 
 
 let countries;
+let countriesObj = [];
+let country = {};
 
 function initialize(countriesData) {
   countries = countriesData
-  let countriesObj = [];
-  let country = {}
+  
   for (let i = 0; i < countries.length; i++) {
     country = {
       name: countries[i].name,
@@ -23,9 +24,10 @@ function initialize(countriesData) {
     };
     countriesObj.push(country);
   }
-
-  console.log(countriesObj)
+ 
 }
+
+console.log(countriesObj)
 
 //level 2 :
 //Print out all the cat names in to catNames variable.
@@ -33,11 +35,17 @@ function initialize(countriesData) {
 const catsAPI = 'https://api.thecatapi.com/v1/breeds'
 
 fetch(catsAPI).then(Response => Response.json()).then(data => init(data));
-let catNames ;
+let catNames = [];
+let cats;
 function init(catData){
-  catNames = catData
-  console.log(catNames);
+  cats = catData 
+  
+  for (let i = 0; i < cats.length; i++) {
+    catNames.push(cats[i].name);    
+  }
 }
+
+console.log(catNames);
 
 //level 3 :
 //(1) Read the cats api and find the average weight of cat in metric unit.
@@ -54,12 +62,12 @@ function init(catData){
 
 //(2) Read the countries api and find out the 10 largest countries.
 
-let maxArea = 0
-for (let i = 0; i < countriesObj.length; i++) {
-  if (maxArea < countriesObj[i].country.area) {
-    maxArea = countriesObj[i].country.area
-  }
-}
+// let maxArea = 0
+// for (let i = 0; i < countriesObj.length; i++) {
+//   if (maxArea < countriesObj[i].country.area) {
+//     maxArea = countriesObj[i].country.area
+//   }
+// }
 
 
 //(3) Read the countries api and count total number of languages in the world used as officials.
